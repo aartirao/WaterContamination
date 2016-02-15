@@ -26,7 +26,7 @@ class WaterSampleLib
   @@bromodichloromethane = nil
   @@dibromichloromethane = nil
   class << self
-    
+     
   # This class intends to ease the managing of the collected sample data, 
   # and assist in computing factors of the data.
   #
