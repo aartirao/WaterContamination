@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chloroform_weight: 1.5
+  bromoform_weight: 1.5
+  bromodichloromethane_weight: 1.5
+  dibromichloromethane_weight: 1.5
+
+two:
+  chloroform_weight: 1.5
+  bromoform_weight: 1.5
+  bromodichloromethane_weight: 1.5
+  dibromichloromethane_weight: 1.5

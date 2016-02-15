@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site: MyText
+  chloroform: 1.5
+  bromoform: 1.5
+  bromodichloromethane: 1.5
+  dibromichloromethane: 1.5
+
+two:
+  site: MyText
+  chloroform: 1.5
+  bromoform: 1.5
+  bromodichloromethane: 1.5
+  dibromichloromethane: 1.5

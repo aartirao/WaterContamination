@@ -1,0 +1,67 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head> 
+
+
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  	$("#factors").change(function() {
+   		call();
+	});
+  	$("#sites").change(function() {
+   		call();
+	});
+});
+
+function call() {
+	$.ajax({
+    url: "/api/"+$("#factors").val()+"/"+$("#sites").val(),
+    success: function(msg){
+    	console.log(msg);
+    	genTable(msg);
+    }
+   	});
+}
+  
+function genTable(entry){
+	var tableEntry = "<td>" + entry.sample.id + "</td><td>" + entry.sample.site + "</td><td>" + entry.sample.chloroform + "</td><td>" + entry.sample.bromoform + "</td><td>" + entry.sample.bromodichloromethane + "</td><td>" + entry.sample.dibromichloromethane +"</td><td>" + entry.factor + "</td>" ;
+	$("#new").empty();
+	$("#new").append(tableEntry);
+}
+
+
+</script>
+<p><%= @factor_weights.chloroform_weight%></p>
+<p><%= @factors%></p>
+<p><%= @hash%></p>
+<%= select_tag "factors", options_for_select(@factors) %>
+<%= select_tag "sites", options_for_select(@sites.collect { |s| [s[:site], s[:id]]}) %>
+<h1>Water Samples</h1>
+ 
+<table id = "recordsTable">
+  <tr>
+    <th>ID</th>
+    <th>Site</th>
+    <th>Choloroform</th>
+    <th>Bromoform</th>
+    <th>Bromodichloromethane</th>
+    <th>Dibromichloromethane</th>
+     <th>Factor</th>
+  </tr>
+ 
+
+  <tr id = "new">
+    <td><%= @sample.id %></td>
+    <td><%= @sample.site %></td>
+    <td><%= @sample.chloroform %></td>
+    <td><%= @sample.bromoform %></td>
+    <td><%= @sample.bromodichloromethane %></td>
+    <td><%= @sample.dibromichloromethane %></td>
+    <td><%= @sample.factor(1) %></td>
+  </tr>
+
+</table>
+
+
+ 
