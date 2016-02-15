@@ -8,10 +8,10 @@ Rails.application.routes.draw do
    root 'welcome#index'
 
   # Example of regular route:
-     get 'factor_weights/:id' => 'welcome#index'
+     get '/' => 'welcome#index'
 
      get 'api/getAllSamples' => 'apis#getSamples'
-     
+
      get 'api/:factor_id/:site_id' => 'apis#getWaterSamples'
 
      get 'api/:factor_id' => 'apis#getFactors'

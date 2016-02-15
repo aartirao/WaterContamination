@@ -1,171 +1,20 @@
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="./assets/javascripts/main.js" type="text/javascript"></script>
+  <link href="./assets/stylesheets/style.css" rel="stylesheet" type="text/css">
+  <title>Water Contamination</title>
 </head> 
 
+<h3>Water Contamination</h3>
+<h5> - A study of contaminant levels in water samples across various sites </h5>
+
+Factor <%= select_tag "factors", options_for_select(@factors) %>
+Site <%= select_tag "sites", options_for_select(@sites.collect { |s| [s[:site], s[:id]]}) %>
 
 
-<script type="text/javascript">
-jQuery(document).ready(function(){
-    $.ajax({
-    url: "/api/getAllSamples",
-    success: function(data){
-      console.log(data);
-      drawGroupChart(data);
-    }
-    });
-
-  	$("#factors").change(function() {
-   		call();
-      chartData();
-	});
-  	$("#sites").change(function() {
-   		call();
-	});
-});
-
-
-function chartData(){
-  $.ajax({
-    url: "/api/"+$("#factors").val(),
-    success: function(data){
-      console.log(data);
-      drawChart(data.factor_weights, data.site_names);
-    }
-    });
-
-}
-
-function call() {
-	$.ajax({
-    url: "/api/"+$("#factors").val()+"/"+$("#sites").val(),
-    success: function(msg){
-    	console.log(msg);
-    	genTable(msg);
-    }
-   	});
-}
-  
-function genTable(entry){
-	var tableEntry = "<td>" + entry.sample.id + "</td><td>" + entry.sample.site + "</td><td>" + entry.sample.chloroform + "</td><td>" + entry.sample.bromoform + "</td><td>" + entry.sample.bromodichloromethane + "</td><td>" + entry.sample.dibromichloromethane +"</td><td>" + entry.factor + "</td>" ;
-	$("#new").empty();
-	$("#new").append(tableEntry);
-}
-
-
-function drawChart(row, col){
-  var trace1 = {
-  x: col,
-  y: row,
-  type: 'bar'
-};
-
-var data = [trace1];
-
-var layout = {
-  title: 'Factors VS Sites'
-};
-
-Plotly.newPlot('myDiv', data, layout);
-}
-
-function drawGroupChart(data){
- 
-  var sites = []
-  var choloroform = [], bromoform = [], bromodichloromethane = [], dibromichloromethane = []
-  console.log(data.length);
-  for(var i=0; i< data.length; i++){
-    console.log(data[i]);
-    sites.push(data[i].site);
-    choloroform.push(data[i].chloroform);
-    bromoform.push(data[i].bromoform);
-    bromodichloromethane.push(data[i].bromodichloromethane);
-    dibromichloromethane.push(data[i].dibromichloromethane);
-  }
-
-
-
-
-  var trace1 = {
-  x: sites,
-  y: choloroform,
-  name: 'Choloroform',
-  marker: {color: 'rgb(71, 180, 2)'},
-  type: 'bar'
-};
-
-var trace2 = {
-  x: sites,
-  y: bromoform,
-  name: 'Bromoform',
-  marker: {color: 'rgb(179, 133, 2)'},
-  type: 'bar'
-};
-
-var trace3 = {
-  x: sites,
-  y: bromodichloromethane,
-  name: 'Bromodichloromethane',
-  marker: {color: 'rgb(39, 92, 212)'},
-  type: 'bar'
-};
-
-var trace4 = {
-  x: sites,
-  y: dibromichloromethane,
-  name: 'Dibromichloromethane',
-  marker: {color: 'rgb(236, 43, 43)'},
-  type: 'bar'
-};
-
-var data = [trace1, trace2, trace3, trace4];
-
-var layout = {
-  title: 'Water Contamination',
-  xaxis: {tickfont: {
-      size: 14,
-      color: 'rgb(107, 107, 107)'
-    }},
-  yaxis: {
-    title: 'Weight (mg/L)',
-    titlefont: {
-      size: 16,
-      color: 'rgb(107, 107, 107)'
-    },
-    tickfont: {
-      size: 14,
-      color: 'rgb(107, 107, 107)'
-    }
-  },
-  legend: {
-    x: 0,
-    y: 1.0,
-    bgcolor: 'rgba(255, 255, 255, 0)',
-    bordercolor: 'rgba(255, 255, 255, 0)'
-  },
-  barmode: 'group',
-  bargap: 0.15,
-  bargroupgap: 0.1
-};
-
-Plotly.newPlot('myDiv1', data, layout);
-
-
-
-
-}
-
-
-
-</script>
-<p><%= @factor_weights.chloroform_weight%></p>
-<p><%= @factors%></p>
-<p><%= @hash%></p>
-<%= select_tag "factors", options_for_select(@factors) %>
-<%= select_tag "sites", options_for_select(@sites.collect { |s| [s[:site], s[:id]]}) %>
-<h1>Water Samples</h1>
- 
-<table id = "recordsTable">
+<br/><br/> 
+<table class = "water-table" id = "recordsTable">
   <tr>
     <th>ID</th>
     <th>Site</th>
@@ -176,7 +25,6 @@ Plotly.newPlot('myDiv1', data, layout);
      <th>Factor</th>
   </tr>
  
-
   <tr id = "new">
     <td><%= @sample.id %></td>
     <td><%= @sample.site %></td>
@@ -189,8 +37,10 @@ Plotly.newPlot('myDiv1', data, layout);
 
 </table>
 
- <div id="myDiv" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
- <div id="myDiv1" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-
+<div id="container">
+  <div id="left"></div>
+  <div id="right"></div>
+  <div id="center"></div>
+</div>
 
  

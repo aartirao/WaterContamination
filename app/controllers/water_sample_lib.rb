@@ -182,7 +182,6 @@ class WaterSampleLib
 
       factors = Array.new
       FactorWeight.find_each do |factor|
-        #puts factor.id
         factors << factor.id
       end
       puts factors

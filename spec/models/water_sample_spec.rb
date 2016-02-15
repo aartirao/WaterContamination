@@ -3,11 +3,11 @@ require 'rails_helper'
 
 describe WaterSample do
   it 'ascertains correct creation' do
-    WaterSample.count.should == 0
+    expect(WaterSample.count) == 0
     FactoryGirl.create(:water_sample1)
-    WaterSample.count.should == 1
+    expect(WaterSample.count) == 1
 
-    WaterSample.find(1).id.should == 1
+    expect(WaterSample.find(1).id) == 1
   end
  
 
@@ -17,10 +17,10 @@ describe WaterSample do
 
     sample = WaterSample.find(1)
 
-    sample.chloroform.should == test.chloroform
-    sample.bromoform.should == test.bromoform
-    sample.bromodichloromethane.should == test.bromodichloromethane
-    sample.dibromichloromethane.should == test.dibromichloromethane
+    expect(sample.chloroform) == test.chloroform
+    expect(sample.bromoform) == test.bromoform
+    expect(sample.bromodichloromethane) == test.bromodichloromethane
+    expect(sample.dibromichloromethane) == test.dibromichloromethane
   end
 
 

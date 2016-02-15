@@ -3,11 +3,11 @@ require 'rails_helper'
 
 describe FactorWeight do
   it 'ascertains correct creation' do
-    FactorWeight.count.should == 0
+    expect(FactorWeight.count) == 0
     FactoryGirl.create(:factor_weight1)
-    FactorWeight.count.should == 1
+    expect(FactorWeight.count) == 1
 
-    FactorWeight.find(1).id.should == 1
+    expect(FactorWeight.find(1).id) == 1
   end
 
   it 'ascertains correct values' do
@@ -16,10 +16,10 @@ describe FactorWeight do
 
     factor = FactorWeight.find(1)
 
-    factor.chloroform_weight.should == test.chloroform_weight
-    factor.bromoform_weight.should == test.bromoform_weight
-    factor.bromodichloromethane_weight.should == test.bromodichloromethane_weight
-    factor.dibromichloromethane_weight.should == test.dibromichloromethane_weight
+    expect(factor.chloroform_weight) == test.chloroform_weight
+    expect(factor.bromoform_weight) == test.bromoform_weight
+    expect(factor.bromodichloromethane_weight) == test.bromodichloromethane_weight
+    expect(factor.dibromichloromethane_weight) == test.dibromichloromethane_weight
   end
 
 end
