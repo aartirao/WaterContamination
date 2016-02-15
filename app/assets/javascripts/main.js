@@ -55,7 +55,7 @@ function drawChart(row, col){
 var data = [trace1];
 
 var layout = {
-  title: 'Factors VS Sites'
+  title: 'Factor VS All Sites'
 };
 
 Plotly.newPlot('left', data, layout);
@@ -64,12 +64,11 @@ Plotly.newPlot('left', data, layout);
 function drawGroupChart(data){
  
   var sites = []
-  var choloroform = [], bromoform = [], bromodichloromethane = [], dibromichloromethane = []
-  console.log(data.length);
+  var chloroform = [], bromoform = [], bromodichloromethane = [], dibromichloromethane = [];
+
   for(var i=0; i< data.length; i++){
-    console.log(data[i]);
     sites.push(data[i].site);
-    choloroform.push(data[i].chloroform);
+    chloroform.push(data[i].chloroform);
     bromoform.push(data[i].bromoform);
     bromodichloromethane.push(data[i].bromodichloromethane);
     dibromichloromethane.push(data[i].dibromichloromethane);
@@ -77,8 +76,8 @@ function drawGroupChart(data){
 
   var trace1 = {
   x: sites,
-  y: choloroform,
-  name: 'Choloroform',
+  y: chloroform,
+  name: 'Chloroform',
   marker: {color: 'rgb(71, 180, 2)'},
   type: 'bar'
 };

@@ -39,8 +39,6 @@ describe WaterSample do
 		    expect(sample[:factor_1]) == hash[:factor_1]
 			expect(sample[:factor_2]) == hash[:factor_2]
 
-
-
 		end
 
 	end

@@ -7,6 +7,7 @@
     width: 40%;
     padding: 10px;
     display: inline-block;
+    margin-left: 9%;
 }
 
 #center {
@@ -28,7 +29,9 @@ table.water-table {
 		border-width: 1px;
 		border-color: #3A3A3A;
 		border-collapse: collapse;
-		width: 100%;
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
 	}
 	table.water-table th {
 		border-width: 1px;
@@ -58,3 +61,7 @@ h3,h5 {
 		outline: none;
 		font-size: 21px;
 	}
+
+.factor_select {
+	margin-left: 20%;
+}
