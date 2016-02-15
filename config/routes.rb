@@ -10,7 +10,13 @@ Rails.application.routes.draw do
   # Example of regular route:
      get 'factor_weights/:id' => 'welcome#index'
 
+     get 'api/getAllSamples' => 'apis#getSamples'
+     
      get 'api/:factor_id/:site_id' => 'apis#getWaterSamples'
+
+     get 'api/:factor_id' => 'apis#getFactors'
+
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
