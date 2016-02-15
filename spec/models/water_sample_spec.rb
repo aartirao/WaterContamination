@@ -22,6 +22,4 @@ describe WaterSample do
     expect(sample.bromodichloromethane) == test.bromodichloromethane
     expect(sample.dibromichloromethane) == test.dibromichloromethane
   end
-
-
 end

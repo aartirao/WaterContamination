@@ -21,5 +21,4 @@ describe FactorWeight do
     expect(factor.bromodichloromethane_weight) == test.bromodichloromethane_weight
     expect(factor.dibromichloromethane_weight) == test.dibromichloromethane_weight
   end
-
 end

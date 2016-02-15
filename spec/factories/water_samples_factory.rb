@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :water_sample1, class: WaterSample do
     id 1
     site 'LA Aquaduct Filteration Plant Effluent'
-    chloroform 0.00213
+    chloroform 0.00223
     bromoform 0.0
     bromodichloromethane 0.00349
     dibromichloromethane 0.00172
