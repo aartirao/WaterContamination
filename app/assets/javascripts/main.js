@@ -2,7 +2,6 @@ jQuery(document).ready(function(){
     $.ajax({
     url: "/api/getAllSamples",
     success: function(data){
-      console.log(data);
       chartData();
       drawGroupChart(data);
     }
@@ -22,7 +21,6 @@ function chartData(){
   $.ajax({
     url: "/api/"+$("#factors").val(),
     success: function(data){
-      console.log(data);
       drawChart(data.factor_weights, data.site_names);
     }
     });
@@ -32,7 +30,6 @@ function call() {
 	$.ajax({
     url: "/api/"+$("#factors").val()+"/"+$("#sites").val(),
     success: function(msg){
-    	console.log(msg);
     	genTable(msg);
     }
    	});
